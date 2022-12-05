@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body background="{% static 'img/group.jpg' %}">
+    
+    <div style="width:350px;height:500px;background-color:#7ab7306b;margin-top:100px;padding-top:25px;border-radius:12px;border-right:4px solid ;border-top:4px solid; border-color: rgba(95, 158, 160, 0.692);">
+    <form action="registersub/">
+    <h2>Registration</h2>
+    <input type=text placeholder="Username"  required style="font-size: 15px; width:280px;height:30px;border:none;border-bottom:3px solid rgba(0, 0, 0, 0.571);border-radius:12px;padding-left:20px;margin-bottom:20px;"name="uname"><br>
+    <input type=text placeholder="First Name"  style="font-size: 15px; width:280px;height:30px;border:none;border-bottom:3px solid rgba(0, 0, 0, 0.571);border-radius:12px;padding-left:20px;margin-bottom:20px;"name="fname"><br>
+    <input type=text placeholder="Last Name" style="font-size: 15px; width:280px;height:30px;border:none;border-bottom:3px solid rgba(0, 0, 0, 0.571);border-radius:12px;padding-left:20px;margin-bottom:20px;"name="lname"><br>
+    <input type=text placeholder="E-Mail" required style="font-size: 15px; width:280px;height:30px;border:none;border-bottom:3px solid rgba(0, 0, 0, 0.571);border-radius:12px;padding-left:20px;margin-bottom:20px;"name="ename"><br>
+    <input type=Password placeholder="Password"  required style="font-size: 15px; width:280px;height:30px;border:none;border-bottom:3px solid rgba(0, 0, 0, 0.571);border-radius:12px;padding-left:20px;margin-bottom:20px;"name="pname"><br>
+    <input type=Password placeholder="Re-Password"  required style="font-size: 15px; width:280px;height:30px;border:none;border-bottom:3px solid rgba(0, 0, 0, 0.571);border-radius:12px;padding-left:20px;margin-bottom:20px;"name="rpname"><br>
+    <button type="submit" style="width:300px;height:30px;background-color:rgba(122, 185, 45, 0.381) ;border:none;font-size:20;color:white;"> SUBMIT</button>
+</form>   
+</div>
+
+</body>
+</html>
