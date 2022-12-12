@@ -11,12 +11,13 @@
     <center>
 
     <div style="width:400px;height:300px;background-color:#7ab7306b;margin-top:100px;padding-top:50px;border-radius:12px">
-    <form action= "loginsub/">
+    <form action= "{% url 'login page' %}" method="post">
+        {% csrf_token %}
     <h2>Login</h2>
     <input type=text placeholder="Username" required style="font-size: 15px; width:280px;height:30px;border:none;border-bottom:3px solid rgba(0, 0, 0, 0.571);border-radius:12px;padding-left:20px;margin-bottom:20px;"name="Uname"><br>
     <input type=Password placeholder="Password" required style="font-size: 15px; width:280px;height:30px;border:none;border-bottom:3px solid rgba(0, 0, 0, 0.571);border-radius:12px;padding-left:20px;margin-bottom:20px;"name="Pname"><br>
-    <button type="submit" style="width:280px;height:30px;background-color:rgba(122, 185, 45, 0.381) ;border:none;font-size:20;color:white;"> Submit </button>
-    
+    <button type="submit" style="width:280px;height:30px;background-color:rgba(122, 185, 45, 0.381) ;border:none;font-size:20;color:white;"> Submit </button><br>
+    <font color="red">{{msg}}</font><br>
     </div>
     </center>
     </form>   
