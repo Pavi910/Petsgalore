@@ -1,24 +1,8 @@
 from django.db import models
+from Home.models import PetProduct
 
-class petpro:
-    name:str
-    price:int
-    img:str
-
-pro1=petpro()
-pro1.name="Cat Food"
-pro1.price=289
-pro1.img="product-2.png"
-
-pro2=petpro()
-pro2.name="Bird Food"
-pro2.price=376
-pro2.img="product-1.png"
-
-pro3=petpro()
-pro3.name="Duck Food"
-pro3.price=473
-pro3.img="product-3.png"
-
-
-
+class comment(models.Model):
+    pro=models.ForeignKey(PetProduct,related_name="comments",on_delete=models.CASCADE)
+    name=models.CharField(max_length=100)
+    cmnt=models.TextField()
+    date=models.DateTimeField(auto_now_add=True)
