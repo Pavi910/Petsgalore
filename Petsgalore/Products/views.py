@@ -8,7 +8,9 @@ def detail(request):
     data=PetProduct.objects.get(id=id)
     total=int(data.price)-(int(data.price*data.discount/100))
     print(data)
-    return render(request,"detail.html",{"pro":data,"total":total})
+    res=render(request,"detail.html",{"pro":data,"total":total})
+    res.set_cookie("pr",data.price)
+    return res
 
 def click(request):
     user=request.POST['user']
