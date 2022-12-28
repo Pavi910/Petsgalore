@@ -1,6 +1,6 @@
 from django.contrib.syndication.views import Feed
 from django.template.defaultfilters import truncatewords
-from .models import PetProducts
+from .models import PetProduct
 from django.urls import reverse
 
 class latestproduct(Feed):
@@ -10,7 +10,7 @@ class latestproduct(Feed):
     discription="newly launching food product esspecailly for cats,hygene and healthy quality product"
 
     def items(self):
-        return PetProducts.objects.all()[:4]
+        return PetProduct.objects.all()[:4]
 
     def item_title(self,x):
         return x.name

@@ -3,6 +3,7 @@ from django.conf import settings
 from .models import comment
 from django.core.mail import send_mail
 from django.shortcuts import render,redirect
+from django.core.cache import cache
 
 
 
@@ -47,7 +48,7 @@ def detail2(request):
         data=cache.get(id)
     else:
         print("data from database")
-        data=PetProducts.objects.get(id=id)
+        data=PetProduct.objects.get(id=id)
         cache.set(id,data)
     total=int(data.price)-(int(data.price)*int(data.discount)/100)
     return render(request,"detail.html",{"pro":data,"total":total})

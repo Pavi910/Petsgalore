@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib import auth
 from django.contrib.auth.models import User
 from.models import PetProduct
+from django.conf import settings
+from django.core.mail import send_mail
 
 def index(request):
     data=PetProduct.objects.all()
@@ -58,10 +60,18 @@ def reg(request):
             return render(request,"register.html",{"msg":msg})
 
         else:
+            rep=render(request,"otp.html")
+            rep.set_cookie("pass",pname)
+            rep.set_cookie("user",uname)
+            rep.set_cookie("first",fname)
+            rep.set_cookie("last",lname)
+            rep.set_cookie("email",ename)
+            send_mail("otp validation","your otp is 1234",settings.EMAIL_HOST_USER,[ename,])
+            return rep
             #user=User.objects.create_user(username=uname,email=ename,first_name=fname,last_name=lname,password=pname)
             #user.save();
             
-            return redirect("/")
+            
     else:
         return render(request,"register.html")    
 
@@ -91,14 +101,21 @@ def otp(request):
 
     if request.method=="POST":
         otp=request.POST["oname"]
-        ucheck=User.objects.filter(otp=otp)
-        if ucheck:
-            msg="otp already taken"
-            return render(request,"otp.html",{"c":msg})
+       
+        if otp=="1234":
+           username=request.COOKIES["user"]
+           password=request.COOKIES["pass"]
+           firstname=request.COOKIES["first"]
+           lastname=request.COOKIES["last"]
+           email=request.COOKIES["email"]
+           user=User.objects.create_user(username=username,email=email,first_name=firstname,last_name=lastname,password=password)
+           user.save();
+           return redirect("/")
+            
+            
         else:
-            user=User.objects.create_user(otp=otp)
-            user.save();
-            return redirect("/")
+            
+            return render(request,"otp.html")
 
     else:
         return render(request,"otp.html")
