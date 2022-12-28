@@ -113,7 +113,13 @@
                    
                 </div>
                 <!-- Blog Detail End -->
-
+                <div>
+                    {% for i in abc %}
+                    <img src="{{i.img.url}}" width="150px" height="150px"> 
+                    {% endfor %}
+            
+                     
+                </div>
                 <!-- Comment List Start -->
                 <div class="mb-5">
                     <h3 class="text-uppercase border-start border-5 border-primary ps-3 mb-4"> {{pro.comments.all|length}} Comments</h3>
@@ -134,8 +140,9 @@
                     {% endif %}
                 </div>
                 <!-- Comment List End -->
-
+                
                 <!-- Comment Form Start -->
+
                 {% if user.is_authenticated %}
                 <div class="bg-light rounded p-5">
                     <h3 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Leave a comment</h3>

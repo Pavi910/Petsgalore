@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+    <head>
+        <title>OTP</title>
+    </head>
+    <body background="{% static 'img/pexels-dominika-roseclay-977736 (3).jpg' %}">
+
+        <center>
+            <form action="{% url 'otppage' %}" method="post">
+                {% csrf_token %}
+            
+                <div style="width:400px;height:300px;;background-color:rgba(248, 248, 248, 0.37);margin-top:100px;border-radius:20px;outline:none;padding-top:20px">
+            
+                <h2><b>OTP</b></h2>
+            
+                <input type="text" placeholder="Enter your OTP" name="uname" required style="width:280px;height:30px;border:none;border-bottom:2px solid rgba(101, 240, 233, 0.267);border-radius:10px;padding-left:100px;margin-bottom:20px;outline:none;"><br>
+            
+                <button type="submit" required style="background-color:aqua ;width:280px;height:30px;border:none;border-bottom:2px solid rgba(101, 240, 233, 0.267);border-radius:10px;margin-bottom:20px;outline:none;padding-right:30px">Submit</button><br>
+                <font color="red">{{c}}</font>
+                </div>
+            </form>
+        </center>
+    </body>
+</html>

@@ -5,5 +5,6 @@ from Products import views
 
 urlpatterns = [
      path("",views.detail),
-     path("select/",views.click,name="testpage")
+     path("select/",views.click,name="testpage"),
+     path("mail/",views.email,name="mailpage")
 ]
