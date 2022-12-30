@@ -7,13 +7,13 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 def index(request):
-    data=PetProduct.objects.all()
-    if "pass" in request.COOKIES and "pr" in request.COOKIES:
-        a=request.COOKIES["pass"]
-        b=request.COOKIES["pr"]
-        return render(request,"index.html",{"pro":data,"cook":a,"pri":b})
+   
+    if request.method=="POST":
+        s=request.POST["mesg"]
+        data=PetProduct.objects.filter(name__istartswith=s)
     else:
-        return render(request,"index.html",{"pro":data})
+        data=PetProduct.objects.all()
+    return render(request,"index.html",{"pro":data})
    
 
 def test(request):
@@ -66,7 +66,13 @@ def reg(request):
             rep.set_cookie("first",fname)
             rep.set_cookie("last",lname)
             rep.set_cookie("email",ename)
-            send_mail("otp validation","your otp is 1234",settings.EMAIL_HOST_USER,[ename,])
+
+            #otp creation
+            l1=len(uname)
+            l2=len(pname)
+            l3=l1+l2*5678
+            l4=str(l3)[:5]
+            send_mail("otp validation",f"your otp is {l4}",settings.EMAIL_HOST_USER,[ename,])
             return rep
             #user=User.objects.create_user(username=uname,email=ename,first_name=fname,last_name=lname,password=pname)
             #user.save();
@@ -100,9 +106,15 @@ def detail(request):
 def otp(request):
 
     if request.method=="POST":
+        username=request.COOKIES["user"]
+        password=request.COOKIES["pass"]
         otp=request.POST["oname"]
+        l1=len(username)
+        l2=len(password)
+        l3=l1+l2*5678
+        l4=str(l3)[:5]
        
-        if otp=="1234":
+        if otp==l4:
            username=request.COOKIES["user"]
            password=request.COOKIES["pass"]
            firstname=request.COOKIES["first"]
@@ -110,6 +122,7 @@ def otp(request):
            email=request.COOKIES["email"]
            user=User.objects.create_user(username=username,email=email,first_name=firstname,last_name=lastname,password=password)
            user.save();
+           auth.login(request,user)
            return redirect("/")
             
             

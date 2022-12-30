@@ -7,8 +7,9 @@
     <title>Pet shop</title>
 </head>
 <body bgcolor="skyblue">
+    <form action="{% url 'searchpage' %}" method="POST">
     <h2>{{msg}}</h2>
-    <h1>Hii</h1>
-    
+    <h1>Hii{{mesg}}</h1>
+</form>
 </body>
 </html>
